@@ -21,7 +21,7 @@ inoremap <Nul> <C-x><C-o>
 " Get this plugin from http://www.vim.org/scripts/script.php?script_id=1112
 " Pressing "K" takes you to the documentation for the word under the cursor.
 if has("gui_win32")
-  autocmd filetype python source ~\\vimfiles\\pydoc.vim
+  autocmd filetype python source ~/vimfiles/pydoc.vim
 else
   autocmd filetype python source ~/.vim/pydoc.vim
 endif

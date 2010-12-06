@@ -1,6 +1,15 @@
 " Enable syntax highlighting
 " and apply our nice color theme
 "
+" set runtime path to consider our local settings
+if has ("win32")
+    set runtimepath=$HOME/.vim,$HOME/vimfiles,$VIMRUNTIME,$VIM/vimfiles/
+
+    " also source in the default vimrc, so that env could be setup correctly
+    " when under windows
+    source $VIM/_vimrc
+endif
+
 if &t_Co > 2 || has("gui_running")
 	syntax on
 	colorscheme wombat
@@ -42,7 +51,11 @@ if has("gui_running")
     if has("gui_gtk2")
       set guifont=Terminus\ (TTF)\ 11
     else
-      set guifont=Terminus:h14
+      if has("gui_win32")
+        set guifont=Terminus:h12
+      else
+        set guifont=Terminus:h14
+      endif
     endif
     set go-=T
 endif
@@ -50,9 +63,9 @@ endif
 
 " Load the python ft plugin when loading a python file
 if has("gui_win32")
-  au FileType python source ~\\vimfiles\ftplugin\python.vim
-  au FileType vala source ~\\vimfiles\ftplugin\vala.vim
-  au FileType make source ~\\vimfiles\ftplugin\make.vim
+  au FileType python source ~/vimfiles/ftplugin/python.vim
+  au FileType vala source ~/vimfiles/ftplugin/vala.vim
+  au FileType make source ~/vimfiles/ftplugin/make.vim
 else
   au FileType python source ~/.vim/ftplugin/python.vim
   au FileType vala source ~/.vim/ftplugin/vala.vim
@@ -120,7 +133,7 @@ set laststatus=2 statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 if !exists("autocommands_loaded")
   let autocommands_loaded = 1
   if has("gui_win32")
-    autocmd BufRead,BufNewFile,FileReadPost *.py source ~\\vimfiles\python
+    autocmd BufRead,BufNewFile,FileReadPost *.py source ~/vimfiles/python
   else
     autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
   endif
