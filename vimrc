@@ -41,7 +41,7 @@ filetype plugin on
 if has("gui_running")
     if has("gui_gtk2")
       set guifont=Terminus\ (TTF)\ 11
-    elseif has("gui_win32") or has("gui_macvim")
+    else
       set guifont=Terminus:h14
     endif
     set go-=T
